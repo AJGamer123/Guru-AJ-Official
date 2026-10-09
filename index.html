@@ -468,7 +468,7 @@
     </section>
   </main>
 
-  <!-- Modal Component with Direct Download for PDF -->
+  <!-- Modal Component with Embedded PDF Viewer & WhatsApp Payment Link -->
   <div id="notes-preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
     
     <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-300">
@@ -488,83 +488,41 @@
         </button>
       </div>
 
-      <!-- Modal Body - Sample Pages Showcase -->
+      <!-- Modal Body - Live PDF Page Preview -->
       <div class="p-6 overflow-y-auto space-y-6 flex-grow">
         
         <!-- Sample Indicator Banner -->
         <div class="bg-emerald-950/60 border border-emerald-500/30 p-3 rounded-xl flex items-center justify-between text-xs sm:text-sm text-emerald-300">
           <span class="flex items-center gap-2 font-medium">
             <i class="fa-solid fa-eye text-emerald-400"></i>
-            Showing First 2 Sample Pages (Readable)
+            Live Notebook PDF Preview
           </span>
-          <span class="font-bold bg-emerald-900/80 px-2.5 py-1 rounded-md text-emerald-200">Sample Preview</span>
+          <span class="font-bold bg-emerald-900/80 px-2.5 py-1 rounded-md text-emerald-200">Sample Viewer</span>
         </div>
 
-        <!-- Document Preview Canvas -->
-        <div class="space-y-4">
-          
-          <!-- Sample Page 1 -->
-          <div class="bg-white text-slate-900 p-6 rounded-2xl shadow-md border border-slate-200 text-xs sm:text-sm space-y-3 relative">
-            <div class="flex justify-between items-center border-b pb-2 border-slate-200">
-              <span class="font-black text-emerald-700 uppercase tracking-wide">Page 1 • Free Sample</span>
-              <span class="text-[10px] text-slate-400">GuruAJ Official AI Notes</span>
-            </div>
-            <h4 id="sample-p1-heading" class="font-bold text-slate-900 text-base">1. Life Processes Overview</h4>
-            <p class="text-slate-700 leading-relaxed">
-              Biological processes essential for maintaining life include Nutrition, Respiration, Transportation, and Excretion. Autotrophic nutrition involves photosynthesis: 
-              <span class="font-mono bg-slate-100 p-1 rounded text-slate-900 font-bold">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</span>.
-            </p>
-            <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-900 text-xs font-medium">
-              💡 <strong>Key Exam Tip:</strong> Master the 3 pathways of glucose breakdown and nephron filtration steps.
-            </div>
+        <!-- Embedded Actual PDF File -->
+        <div class="w-full h-[450px] rounded-2xl border border-slate-700 overflow-hidden bg-slate-900">
+          <object id="pdf-object-viewer" data="life_processes_notes.pdf#page=1" type="application/pdf" class="w-full h-full">
+            <iframe id="pdf-iframe-viewer" src="life_processes_notes.pdf#page=1" class="w-full h-full border-none">
+              <p class="text-white text-xs p-4">Your browser does not support inline PDF previews. <a href="life_processes_notes.pdf" target="_blank" class="text-emerald-400 underline">Click here to open sample PDF directly.</a></p>
+            </iframe>
+          </object>
+        </div>
+
+        <!-- Locked Pages Overlay Banner -->
+        <div class="relative bg-slate-950 border border-emerald-500/40 p-5 rounded-2xl text-center text-white space-y-2">
+          <div class="flex justify-center">
+            <span class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold">
+              <i class="fa-solid fa-lock"></i>
+            </span>
           </div>
-
-          <!-- Sample Page 2 -->
-          <div class="bg-white text-slate-900 p-6 rounded-2xl shadow-md border border-slate-200 text-xs sm:text-sm space-y-3 relative">
-            <div class="flex justify-between items-center border-b pb-2 border-slate-200">
-              <span class="font-black text-emerald-700 uppercase tracking-wide">Page 2 • Free Sample</span>
-              <span class="text-[10px] text-slate-400">GuruAJ Official AI Notes</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-base">2. Human Digestive System & Respiration</h4>
-            <p class="text-slate-700 leading-relaxed">
-              Salivary amylase digests starch in buccal cavity; Gastric glands release HCl, Pepsin, Mucus. Small intestine receives Bile & Pancreatic juices (Trypsin, Lipase) for complete absorption via Villi.
-            </p>
-            <div class="h-16 bg-slate-100 rounded-xl border border-dashed border-slate-300 flex items-center justify-center text-slate-500 font-mono text-xs">
-              [ Glucose Breakdown Pathways: Cytoplasm → Pyruvate → Mitochondria / Muscles / Yeast ]
-            </div>
-          </div>
-
-          <!-- Page 3+ (BLURRED OVERLAY) -->
-          <div class="relative bg-white text-slate-900 p-6 rounded-2xl shadow-md border border-slate-200 text-xs overflow-hidden">
-            <div class="blurred-content space-y-3">
-              <div class="flex justify-between border-b pb-2">
-                <span class="font-bold text-slate-400">Page 3 • Full High-Res Notes</span>
-              </div>
-              <h4 class="font-bold text-slate-900 text-base">3. Detailed Mechanisms & Important Questions</h4>
-              <p>Double circulation in 4-chambered heart, xylem vs phloem transport, nephron filtration mechanisms, and high-yield board practice questions.</p>
-              <div class="h-24 bg-slate-200 rounded-xl"></div>
-            </div>
-
-            <!-- Unlock Badge Overlay -->
-            <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center text-white space-y-3">
-              <div class="w-12 h-12 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xl font-bold shadow-lg">
-                <i class="fa-solid fa-lock"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg">Unlock Full High-Res Notes PDF</h4>
-                <p class="text-slate-300 text-xs">Get all remaining pages + practice Q&As + printable notebook file.</p>
-              </div>
-              <span class="text-xs bg-emerald-950 border border-emerald-500/40 text-emerald-300 px-3 py-1 rounded-full">
-                Available Now / Order via GPay
-              </span>
-            </div>
-          </div>
-
+          <h4 class="font-bold text-base text-white">Want the Complete High-Res Printable PDF?</h4>
+          <p class="text-slate-300 text-xs">Send GPay payment screenshot on WhatsApp to instantly receive the complete file!</p>
         </div>
 
       </div>
 
-      <!-- Modal Footer with Purchase & Direct Download Actions -->
+      <!-- Modal Footer with WhatsApp Order Actions -->
       <div class="p-5 border-t border-slate-800 bg-slate-950 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <span class="text-xs text-slate-400">Price tag:</span>
@@ -576,19 +534,11 @@
 
         <div class="flex items-center gap-3 w-full sm:w-auto">
           <a id="modal-gpay-btn" 
-             href="https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20want%20to%20buy%20the%20notes%20for%20chapter:%20Life%20Processes" 
+             href="https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20have%20sent%20payment%20via%20GPay.%20Please%20send%20me%20the%20complete%20PDF%20for%20Life%20Processes." 
              target="_blank" 
-             class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-5 py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-            <i class="fa-brands fa-google-pay text-xl"></i>
-            <span>Pay via GPay</span>
-          </a>
-          <!-- Direct Link to your PDF file on GitHub -->
-          <a id="modal-pdf-download"
-             href="life_processes_notes.pdf" 
-             download
-             class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-bold px-5 py-3 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 text-sm">
-            <i class="fa-solid fa-file-pdf text-red-400"></i>
-            <span>Download PDF</span>
+             class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-6 py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span>Pay & Get PDF on WhatsApp</span>
           </a>
         </div>
       </div>
@@ -611,7 +561,7 @@
     </div>
   </footer>
 
-  <!-- Complete Script for Concept Map & Modals -->
+  <!-- Complete Script for Concept Map & Dynamic PDF Loading -->
   <script>
     const syllabusData = {
       10: {
@@ -715,14 +665,17 @@
       document.getElementById('modal-price').innerText = price;
       
       const gpayBtn = document.getElementById('modal-gpay-btn');
-      gpayBtn.href = `https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20want%20to%20buy%20the%20notes%20for%20chapter:%20${encodeURIComponent(chapterName)}`;
+      gpayBtn.href = `https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20have%20sent%20payment%20via%20GPay.%20Please%20send%20me%20the%20complete%20PDF%20for%20${encodeURIComponent(chapterName)}`;
       
-      const downloadBtn = document.getElementById('modal-pdf-download');
+      const pdfObj = document.getElementById('pdf-object-viewer');
+      const pdfIframe = document.getElementById('pdf-iframe-viewer');
+      
       if (file) {
-        downloadBtn.href = file;
-        downloadBtn.style.display = "flex";
+        pdfObj.data = `${file}#page=1`;
+        pdfIframe.src = `${file}#page=1`;
       } else {
-        downloadBtn.href = "javascript:alert('This chapter notes file will be uploaded soon!')";
+        pdfObj.data = "life_processes_notes.pdf#page=1";
+        pdfIframe.src = "life_processes_notes.pdf#page=1";
       }
 
       document.getElementById('notes-preview-modal').classList.remove('hidden');
