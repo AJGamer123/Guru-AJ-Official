@@ -3,400 +3,739 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GuruAJ Official | Class 10 & 12 Study Notes, Work PDFs & Custom AI Assets</title>
+  <title>GuruAJ Official | Class 10 & 12 Science Notes, Custom AI PDFs & Presentations</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap');
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .handwriting { font-family: 'Caveat', cursive; }
-    .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%); }
-    .card-hover:hover { transform: translateY(-3px); transition: all 0.2s ease; }
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
     
-    .notebook-paper {
-      background-color: #fdfbf7;
-      background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
-      background-size: 100% 1.8rem;
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Gradient Backgrounds */
+    .bg-gradient-dark {
+      background: linear-gradient(135deg, #0b1329 0%, #111d38 50%, #064e3b 100%);
+    }
+
+    .bg-gradient-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+    }
+
+    /* Concept Map Animations & Styling */
+    .mindmap-node {
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .mindmap-node:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .branch-line {
+      position: relative;
+    }
+
+    .branch-line::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -20px;
+      width: 20px;
+      height: 2px;
+      background: #34d399;
+    }
+
+    /* Blur & Glass Effect for Note Previews */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .glass-dark {
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .blurred-content {
+      filter: blur(6px);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Pulse effects */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.8); }
+    }
+
+    .glow-active {
+      animation: pulseGlow 3s infinite;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col">
 
-  <!-- AI Transparency Banner -->
-  <div class="bg-amber-500 text-slate-950 px-4 py-2 text-center text-xs sm:text-sm font-bold flex items-center justify-center gap-2">
-    <i class="fa-solid fa-robot text-base"></i>
-    <span>100% AI-Powered & Expertly Verified Resources — Get Top-Tier Educational Content & Custom Project Files Fast & Affordably!</span>
-  </div>
-
-  <!-- Header / Navbar -->
-  <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur text-white border-b border-slate-800">
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 font-extrabold text-xl shadow-inner">
-          G
+      
+      <!-- Brand Logo & Title -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-extrabold text-emerald-400 text-xl">
+            G
+          </div>
         </div>
         <div>
-          <h1 class="text-xl font-bold tracking-tight text-white leading-none">GuruAJ Official</h1>
-          <span class="text-xs text-emerald-400 font-medium">@guruajofficial • Est. 2026</span>
+          <span class="text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
+            GuruAJ Official
+            <i class="fa-solid fa-circle-check text-emerald-400 text-xs"></i>
+          </span>
+          <p class="text-xs text-slate-400 font-medium">@guruajofficial • Future-Ready Studies</p>
         </div>
-      </div>
-      <nav class="hidden md:flex items-center gap-8 font-medium text-slate-300 text-sm">
-        <a href="#concept-map" class="hover:text-emerald-400 transition">Classes & Subjects</a>
-        <a href="#custom-pdf" class="hover:text-emerald-400 transition">Custom AI Projects</a>
-        <a href="#youtube" class="hover:text-emerald-400 transition">Free Tutorials</a>
-      </nav>
-      <a href="https://youtube.com/@guruajofficial" target="_blank" class="bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg shadow-red-600/30 transition">
-        <i class="fa-brands fa-youtube text-lg"></i> Subscribe
       </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300">
+        <a href="#notes-explorer" class="hover:text-emerald-400 transition flex items-center gap-2">
+          <i class="fa-solid fa-diagram-project text-emerald-400"></i> Class Notes
+        </a>
+        <a href="#custom-projects" class="hover:text-emerald-400 transition flex items-center gap-2">
+          <i class="fa-solid fa-laptop-code text-teal-400"></i> Custom AI Projects
+        </a>
+        <a href="#ai-disclosure" class="hover:text-emerald-400 transition flex items-center gap-2">
+          <i class="fa-solid fa-robot text-amber-400"></i> AI Transparency
+        </a>
+        <a href="#payment-info" class="hover:text-emerald-400 transition flex items-center gap-2">
+          <i class="fa-solid fa-wallet text-blue-400"></i> GPay & Contact
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20want%20to%20inquire%20about%20Science%20Notes%20/%20Custom%20Projects." 
+           target="_blank" 
+           class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span class="hidden sm:inline">WhatsApp</span> Us
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="gradient-bg text-white py-16 px-4">
-    <div class="max-w-5xl mx-auto text-center space-y-5">
-      <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider inline-block">
-        Class 10 & 12 Board Prep • Custom AI Presentations
-      </span>
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">
-        Interactive Concept Maps & Board-Ready Revision Notes
-      </h1>
-      <p class="text-slate-300 text-base md:text-lg max-w-2xl mx-auto font-light">
-        Explore interactive study branches for Class 10 & 12 Science. Preview authentic notebook-style notes before buying!
-      </p>
-    </div>
-  </section>
-
-  <!-- Concept Map Interactive Section -->
-  <section id="concept-map" class="py-16 max-w-7xl mx-auto px-4">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-extrabold text-slate-900">Interactive Concept Map Explorer</h2>
-      <p class="text-slate-600 mt-1 text-sm">Select your Class and Subject to expand chapter branches</p>
-    </div>
-
-    <!-- Step 1: Choose Class -->
-    <div class="flex justify-center gap-4 mb-10">
-      <button id="btn-c10" onclick="selectClass('10')" class="px-8 py-3.5 rounded-2xl font-extrabold text-lg shadow-md transition flex items-center gap-3 bg-emerald-600 text-white ring-4 ring-emerald-600/30">
-        <i class="fa-solid fa-graduation-cap"></i> Class 10
-      </button>
-      <button id="btn-c12" onclick="selectClass('12')" class="px-8 py-3.5 rounded-2xl font-extrabold text-lg shadow-md transition flex items-center gap-3 bg-white text-slate-700 border border-slate-300 hover:border-emerald-500">
-        <i class="fa-solid fa-user-graduate"></i> Class 12
-      </button>
-    </div>
-
-    <!-- Concept Map Canvas Container -->
-    <div class="bg-slate-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl border border-slate-800">
+  <main class="flex-grow">
+    <section class="relative py-16 lg:py-24 bg-gradient-dark overflow-hidden border-b border-slate-800">
+      <div class="absolute inset-0 bg-gradient-glow pointer-events-none"></div>
       
-      <!-- Class Header -->
-      <div class="flex items-center justify-between border-b border-slate-800 pb-6 mb-8">
-        <div>
-          <span class="text-emerald-400 font-extrabold text-xs uppercase tracking-widest">Active Curriculum</span>
-          <h3 id="class-title" class="text-2xl font-black text-white mt-1">Class 10 Science Streams</h3>
-        </div>
-        <span class="bg-slate-800 text-slate-300 text-xs px-3 py-1.5 rounded-lg border border-slate-700">Click subject node to expand</span>
-      </div>
-
-      <!-- Subject Nodes Grid (Level 1) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <button onclick="toggleSubject('bio')" id="subj-bio" class="p-5 rounded-2xl border-2 border-emerald-500 bg-emerald-950/40 text-left transition flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold">
-              <i class="fa-solid fa-dna"></i>
-            </div>
-            <div>
-              <h4 id="label-bio" class="font-extrabold text-lg">Biology</h4>
-              <p class="text-slate-400 text-xs">Life Processes, Control & Coordination...</p>
-            </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-3xl mx-auto space-y-6">
+          
+          <!-- AI Transparency Top Badge -->
+          <div class="inline-flex items-center gap-2 bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md">
+            <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
+            <span>100% AI-Crafted & Expertly Curated Learning Assets</span>
           </div>
-          <i id="icon-bio" class="fa-solid fa-chevron-down text-emerald-400"></i>
-        </button>
 
-        <button onclick="toggleSubject('phy')" id="subj-phy" class="p-5 rounded-2xl border-2 border-slate-800 bg-slate-800/40 text-left transition flex items-center justify-between hover:border-slate-700">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl font-bold">
-              <i class="fa-solid fa-bolt"></i>
-            </div>
-            <div>
-              <h4 id="label-phy" class="font-extrabold text-lg">Physics</h4>
-              <p class="text-slate-400 text-xs">Light Reflection, Electricity...</p>
-            </div>
-          </div>
-          <i id="icon-phy" class="fa-solid fa-chevron-right text-slate-500"></i>
-        </button>
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Class 10 & 12 Science Notes <br class="hidden sm:inline">
+            <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+              Interactive Concept Maps
+            </span>
+          </h1>
 
-        <button onclick="toggleSubject('chem')" id="subj-chem" class="p-5 rounded-2xl border-2 border-slate-800 bg-slate-800/40 text-left transition flex items-center justify-between hover:border-slate-700">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl font-bold">
-              <i class="fa-solid fa-flask"></i>
-            </div>
-            <div>
-              <h4 id="label-chem" class="font-extrabold text-lg">Chemistry</h4>
-              <p class="text-slate-400 text-xs">Chemical Reactions, Acids & Bases...</p>
-            </div>
-          </div>
-          <i id="icon-chem" class="fa-solid fa-chevron-right text-slate-500"></i>
-        </button>
-      </div>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+            Explore animated chapter branches for Physics, Chemistry & Biology. Preview sample pages before unlocked downloads via <span class="text-emerald-400 font-semibold">Google Pay</span>.
+          </p>
 
-      <!-- Chapter Branches -->
-      <div id="chapter-tree" class="bg-slate-950/80 rounded-2xl p-6 border border-slate-800">
-        <h4 id="tree-title" class="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-4 flex items-center gap-2">
-          <i class="fa-solid fa-sitemap"></i> Biology Chapters Branch
-        </h4>
-        
-        <div id="chapter-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Class 10 Bio Chapter 1 -->
-          <div class="p-4 rounded-xl bg-slate-900 border border-emerald-500/40 hover:border-emerald-400 transition flex items-center justify-between group">
-            <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">Ch 1</span>
-              <div>
-                <h5 class="font-bold text-white text-sm group-hover:text-emerald-300">Life Processes</h5>
-                <span class="text-xs text-slate-400">Notebook Copy Format PDF • Board Verified</span>
-              </div>
-            </div>
-            <button onclick="openPdfModal('Class 10 Biology - Life Processes', 49, 'life_processes_notes.pdf')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition shadow">
-              Preview & Buy
+          <!-- Quick Navigation CTA Buttons -->
+          <div class="flex flex-wrap justify-center gap-4 pt-2">
+            <button onclick="selectClass(10)" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 transition flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-lg"></i>
+              Class 10 Notes Map
             </button>
+            <button onclick="selectClass(12)" class="bg-teal-600 hover:bg-teal-500 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-teal-600/20 transition flex items-center gap-2">
+              <i class="fa-solid fa-atom text-lg"></i>
+              Class 12 Notes Map
+            </button>
+            <a href="#custom-projects" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-3.5 rounded-xl border border-slate-700 transition flex items-center gap-2">
+              <i class="fa-solid fa-pen-ruler text-amber-400"></i>
+              Order Custom PPT / File
+            </a>
           </div>
 
-          <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 opacity-75">
-            <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 text-xs font-bold flex items-center justify-center">Ch 2</span>
-              <div>
-                <h5 class="font-bold text-slate-300 text-sm">Control and Coordination</h5>
-                <span class="text-xs text-slate-500">Updating Soon...</span>
-              </div>
+          <!-- Feature Highlights Bar -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 text-left border-t border-slate-800/80">
+            <div class="bg-slate-900/60 p-3.5 rounded-2xl border border-slate-800">
+              <i class="fa-solid fa-book-open-reader text-emerald-400 text-xl mb-1"></i>
+              <h4 class="text-xs font-bold text-white">First 2 Pages Free</h4>
+              <p class="text-[11px] text-slate-400">Read samples before buy</p>
+            </div>
+            <div class="bg-slate-900/60 p-3.5 rounded-2xl border border-slate-800">
+              <i class="fa-brands fa-google-pay text-cyan-400 text-2xl mb-1"></i>
+              <h4 class="text-xs font-bold text-white">Google Pay Ready</h4>
+              <p class="text-[11px] text-slate-400">Direct & instant delivery</p>
+            </div>
+            <div class="bg-slate-900/60 p-3.5 rounded-2xl border border-slate-800">
+              <i class="fa-brands fa-whatsapp text-emerald-400 text-xl mb-1"></i>
+              <h4 class="text-xs font-bold text-white">WhatsApp Support</h4>
+              <p class="text-[11px] text-slate-400">Direct query: 7366999087</p>
+            </div>
+            <div class="bg-slate-900/60 p-3.5 rounded-2xl border border-slate-800">
+              <i class="fa-solid fa-robot text-amber-400 text-xl mb-1"></i>
+              <h4 class="text-xs font-bold text-white">AI-Powered Files</h4>
+              <p class="text-[11px] text-slate-400">100% honest transparency</p>
             </div>
           </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="notes-explorer" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-emerald-400 text-xs font-bold uppercase tracking-wider bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full">
+          Interactive Concept Tree
+        </span>
+        <h2 class="text-3xl font-extrabold text-white mt-3">Select Class & Explore Chapters</h2>
+        <p class="text-slate-400 text-sm mt-2">Click on your target class to open the animated subject branches for Biology, Physics & Chemistry.</p>
+      </div>
+
+      <!-- Class Selection Toggle Bar -->
+      <div class="flex justify-center mb-10">
+        <div class="bg-slate-900 p-1.5 rounded-2xl border border-slate-800 inline-flex gap-2 shadow-inner">
+          <button id="btn-class10" onclick="selectClass(10)" 
+                  class="px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 bg-emerald-500 text-slate-950 shadow-md">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Class 10 Science
+          </button>
+          <button id="btn-class12" onclick="selectClass(12)" 
+                  class="px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 text-slate-400 hover:text-white">
+            <i class="fa-solid fa-flask"></i>
+            Class 12 Science
+          </button>
         </div>
       </div>
 
-    </div>
-  </section>
+      <!-- Mind Map Dynamic Container -->
+      <div id="mindmap-container" class="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden transition-all duration-500">
+        
+        <!-- Main Root Node -->
+        <div class="flex justify-center mb-10">
+          <div id="mindmap-root-title" class="bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 px-8 py-3.5 rounded-2xl font-black text-lg sm:text-xl shadow-lg flex items-center gap-3">
+            <i class="fa-solid fa-atom text-2xl"></i>
+            <span>Class 10 Science Concept Map</span>
+          </div>
+        </div>
 
-  <!-- PDF Preview & Google Pay Modal -->
-  <div id="pdf-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden border border-slate-200 flex flex-col max-h-[90vh]">
+        <!-- Subjects Grid Branches -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+          
+          <!-- Biology Branch -->
+          <div class="bg-slate-950/70 border border-emerald-900/50 rounded-2xl p-5 hover:border-emerald-500/50 transition-all duration-300 shadow-lg">
+            <div class="flex items-center justify-between border-b border-emerald-900/40 pb-3 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg">
+                  <i class="fa-solid fa-dna"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-white text-base">Biology</h3>
+                  <span class="text-[11px] text-emerald-400">Life Sciences</span>
+                </div>
+              </div>
+              <span class="text-xs bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-md font-mono">
+                <span id="bio-count">5</span> Chapters
+              </span>
+            </div>
+
+            <!-- Animated Chapter Nodes -->
+            <div id="bio-chapters-list" class="space-y-2.5">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Physics Branch -->
+          <div class="bg-slate-950/70 border border-cyan-900/50 rounded-2xl p-5 hover:border-cyan-500/50 transition-all duration-300 shadow-lg">
+            <div class="flex items-center justify-between border-b border-cyan-900/40 pb-3 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-lg">
+                  <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-white text-base">Physics</h3>
+                  <span class="text-[11px] text-cyan-400">Energy & Mechanics</span>
+                </div>
+              </div>
+              <span class="text-xs bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded-md font-mono">
+                <span id="phy-count">4</span> Chapters
+              </span>
+            </div>
+
+            <!-- Animated Chapter Nodes -->
+            <div id="phy-chapters-list" class="space-y-2.5">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Chemistry Branch -->
+          <div class="bg-slate-950/70 border border-amber-900/50 rounded-2xl p-5 hover:border-amber-500/50 transition-all duration-300 shadow-lg">
+            <div class="flex items-center justify-between border-b border-amber-900/40 pb-3 mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg">
+                  <i class="fa-solid fa-vial"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-white text-base">Chemistry</h3>
+                  <span class="text-[11px] text-amber-400">Elements & Reactions</span>
+                </div>
+              </div>
+              <span class="text-xs bg-amber-950 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-md font-mono">
+                <span id="chem-count">4</span> Chapters
+              </span>
+            </div>
+
+            <!-- Animated Chapter Nodes -->
+            <div id="chem-chapters-list" class="space-y-2.5">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="custom-projects" class="py-16 bg-slate-900/60 border-y border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- Left Info -->
+          <div class="space-y-6">
+            <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider inline-block">
+              Custom Academic & Design Service
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+              Get Homework, PPTs & Cultural Representation Files Made For You!
+            </h2>
+            <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+              Got a school or college assignment like a <strong class="text-amber-300">Cultural Project Presentation (PPT)</strong>, topic representation file, or custom PDF document? GuruAJ can create high-quality, beautifully formatted projects tailored directly to your syllabus topic!
+            </p>
+
+            <!-- Examples List -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center gap-3">
+                <i class="fa-solid fa-file-powerpoint text-amber-400 text-xl"></i>
+                <span class="text-xs font-semibold text-slate-200">Cultural & Art Integrated PPTs</span>
+              </div>
+              <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center gap-3">
+                <i class="fa-solid fa-book-bookmark text-emerald-400 text-xl"></i>
+                <span class="text-xs font-semibold text-slate-200">Topic Representation PDFs</span>
+              </div>
+              <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center gap-3">
+                <i class="fa-solid fa-paintbrush text-cyan-400 text-xl"></i>
+                <span class="text-xs font-semibold text-slate-200">Festive & Vector Artwork</span>
+              </div>
+              <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center gap-3">
+                <i class="fa-solid fa-clipboard-check text-indigo-400 text-xl"></i>
+                <span class="text-xs font-semibold text-slate-200">School Homework Portfolios</span>
+              </div>
+            </div>
+
+            <!-- Direct Order CTA -->
+            <div class="pt-2">
+              <a href="https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20want%20to%20order%20a%20Custom%20PPT/Project%20File.%20Here%20are%20my%20details:" 
+                 target="_blank" 
+                 class="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-extrabold px-6 py-3.5 rounded-xl shadow-lg shadow-amber-500/20 hover:scale-105 transition-transform">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Order Custom Project on WhatsApp (7366999087)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Box: Explicit AI Transparency Badge Section -->
+          <div id="ai-disclosure" class="bg-slate-950 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 relative shadow-2xl overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-36 h-36 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl font-bold">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-white">AI Transparency Guarantee</h3>
+                <span class="text-xs text-amber-400 font-semibold">Complete Honesty & Zero Scams</span>
+              </div>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-4">
+              We believe in <strong>100% honesty and transparency</strong> with every student and buyer:
+            </p>
+
+            <div class="space-y-3 bg-slate-900/80 p-4 rounded-2xl border border-slate-800 text-xs sm:text-sm text-slate-300">
+              <div class="flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                <span>All chapter notes, diagrams, custom presentation files, and festive illustrations available on this platform are <strong>crafted and synthesized using cutting-edge AI tools</strong> under expert educational supervision.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                <span>You will receive modern, well-formatted, AI-assisted content specifically designed for high scores and smooth school submissions.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i>
+                <span>No surprises or hidden claims — you know exactly how your files are generated before making any payment!</span>
+              </div>
+            </div>
+
+            <div class="mt-5 p-3 rounded-xl bg-amber-950/40 border border-amber-800/50 flex items-center gap-3">
+              <i class="fa-solid fa-shield-halved text-amber-400 text-lg"></i>
+              <p class="text-[11px] text-amber-200">
+                100% Authentic Delivery • No Scam Promise • Instant GPay Support
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="payment-info" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-emerald-950/40 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          
+          <!-- Payment Info -->
+          <div>
+            <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest bg-cyan-950 border border-cyan-800 px-3 py-1 rounded-full">
+              Payment Gateway
+            </span>
+            <h2 class="text-3xl font-extrabold text-white mt-3">Google Pay (GPay) Transactions</h2>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+              Google Pay is our official primary payment method. Fast, secure, and hassle-free directly via UPI to GuruAJ.
+            </p>
+
+            <div class="mt-6 space-y-3">
+              <div class="flex items-center gap-4 bg-slate-900 p-4 rounded-2xl border border-slate-800">
+                <div class="w-12 h-12 rounded-xl bg-white p-2 flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-google-pay text-slate-900 text-3xl"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Direct GPay UPI Number</h4>
+                  <p class="text-emerald-400 font-mono font-bold text-lg">7366999087</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 text-xs text-slate-400 pl-2">
+                <i class="fa-solid fa-info-circle text-cyan-400"></i>
+                <span>After GPay transfer, send payment screenshot on WhatsApp to instantly receive your PDF notes unlock key!</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact WhatsApp Info -->
+          <div class="bg-slate-900/90 p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Official Support WhatsApp</h3>
+                <p class="text-xs text-slate-400">Available for queries, notes & custom orders</p>
+              </div>
+            </div>
+
+            <div class="text-2xl font-black text-emerald-400 font-mono tracking-wider">
+              +91 7366999087
+            </div>
+
+            <p class="text-xs text-slate-300">
+              Contact us anytime for instant notes purchase, custom project requests, or GPay transaction verification.
+            </p>
+
+            <a href="https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20have%20a%20question%20regarding%20GPay%20and%20Notes." 
+               target="_blank" 
+               class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl flex items-center justify-center gap-2 text-sm transition">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              Open WhatsApp Chat Now
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Component with Direct Download for PDF -->
+  <div id="notes-preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-300">
       
       <!-- Modal Header -->
-      <div class="bg-slate-900 text-white p-5 flex items-center justify-between border-b border-slate-800">
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950">
         <div>
-          <span class="text-xs font-bold uppercase text-emerald-400 tracking-wider">Notebook Sample Preview</span>
-          <h3 id="modal-chapter-title" class="text-lg font-extrabold">Class 10 Biology - Life Processes</h3>
+          <span id="modal-class-badge" class="text-[10px] font-bold uppercase tracking-wider bg-emerald-950 text-emerald-300 border border-emerald-800 px-2.5 py-0.5 rounded-md">
+            Class 10 Biology
+          </span>
+          <h3 id="modal-chapter-title" class="text-xl font-bold text-white mt-1">
+            Life Processes - Complete Notes
+          </h3>
         </div>
-        <button onclick="closePdfModal()" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center text-sm">
-          <i class="fa-solid fa-xmark"></i>
+        <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
 
-      <!-- Modal Body -->
-      <div class="p-6 overflow-y-auto space-y-6">
+      <!-- Modal Body - Sample Pages Showcase -->
+      <div class="p-6 overflow-y-auto space-y-6 flex-grow">
         
-        <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
-            <i class="fa-solid fa-eye text-emerald-600"></i> Free Sample Pages (Page 1 & 2)
-          </h4>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-            <!-- Page 1 Sample -->
-            <div class="notebook-paper p-5 rounded-2xl border border-slate-300 shadow-inner relative overflow-hidden text-xs space-y-3">
-              <div class="absolute top-0 right-0 bg-emerald-600 text-white text-[10px] font-extrabold px-3 py-1 rounded-bl-xl uppercase">Sample Page 1</div>
-              <p class="font-extrabold text-slate-900 text-sm border-b border-rose-300 pb-1">GURU AJ OFFICIAL — LIFE PROCESSES</p>
-              <p class="handwriting text-slate-800 text-sm leading-relaxed">
-                <strong>1. What are Life Processes?</strong><br>
-                Basic maintenance activities performed by living organisms to maintain life on Earth...
-              </p>
-              <div class="bg-emerald-100/70 p-2 rounded border border-emerald-300 text-[11px]">
-                <strong>Photosynthesis Equation:</strong><br>
-                6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ (In presence of Sunlight & Chlorophyll)
-              </div>
-            </div>
-
-            <!-- Page 2 Sample (Locked) -->
-            <div class="notebook-paper p-5 rounded-2xl border border-slate-300 shadow-inner relative overflow-hidden text-xs space-y-3 select-none">
-              <div class="absolute top-0 right-0 bg-slate-800 text-slate-300 text-[10px] font-extrabold px-3 py-1 rounded-bl-xl uppercase">Page 2 (Locked)</div>
-              
-              <div class="filter blur-[3px] opacity-60 space-y-2">
-                <p class="font-bold text-slate-900 border-b border-rose-300 pb-1">3. Human Digestive System & Enzymes</p>
-                <p>Salivary Amylase breaks starch into maltose in mouth. Stomach secretes Gastric Juice (HCl, Pepsin, Mucus)...</p>
-                <p>Small Intestine complete digestion: Proteins → Amino Acids, Fats → Fatty Acids & Glycerol...</p>
-                <p>Double Circulation in Heart: Pulmonary and Systemic loops keep oxygenated blood separate...</p>
-              </div>
-
-              <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-[1px] flex flex-col items-center justify-center p-4 text-center text-white">
-                <i class="fa-solid fa-lock text-3xl text-emerald-400 mb-2"></i>
-                <h5 class="font-black text-base">Unlock All Full Pages</h5>
-                <p class="text-[11px] text-slate-300 mt-1">Get complete master notes with diagrams & high-yield board questions</p>
-              </div>
-            </div>
-
-          </div>
+        <!-- Sample Indicator Banner -->
+        <div class="bg-emerald-950/60 border border-emerald-500/30 p-3 rounded-xl flex items-center justify-between text-xs sm:text-sm text-emerald-300">
+          <span class="flex items-center gap-2 font-medium">
+            <i class="fa-solid fa-eye text-emerald-400"></i>
+            Showing First 2 Sample Pages (Readable)
+          </span>
+          <span class="font-bold bg-emerald-900/80 px-2.5 py-1 rounded-md text-emerald-200">Sample Preview</span>
         </div>
 
-        <!-- Google Pay Payment Box -->
-        <div class="bg-emerald-50 border-2 border-emerald-300 rounded-2xl p-6 text-center space-y-4">
-          <div>
-            <span class="text-xs font-extrabold text-emerald-800 uppercase tracking-widest">Instant Google Pay Purchase</span>
-            <h4 class="text-2xl font-black text-slate-900 mt-1">Pay <span id="modal-price" class="text-emerald-700">₹49</span> via Google Pay</h4>
-            <p class="text-xs text-slate-600 mt-1">Send payment to Google Pay / PhonePe UPI or WhatsApp <strong>7366999087</strong> for instant PDF link!</p>
-          </div>
-
-          <div class="bg-white p-4 rounded-xl border border-slate-200 inline-block shadow-sm">
-            <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Google Pay UPI ID</div>
-            <div class="text-lg font-black text-slate-900 tracking-wider bg-slate-100 px-4 py-2 rounded-lg border border-slate-300 flex items-center justify-center gap-2">
-              <span>7366999087@gpay</span>
-              <button onclick="navigator.clipboard.writeText('7366999087@gpay'); alert('UPI ID copied!');" class="text-xs text-emerald-600 hover:text-emerald-700 font-bold ml-2">Copy</button>
+        <!-- Document Preview Canvas -->
+        <div class="space-y-4">
+          
+          <!-- Sample Page 1 -->
+          <div class="bg-white text-slate-900 p-6 rounded-2xl shadow-md border border-slate-200 text-xs sm:text-sm space-y-3 relative">
+            <div class="flex justify-between items-center border-b pb-2 border-slate-200">
+              <span class="font-black text-emerald-700 uppercase tracking-wide">Page 1 • Free Sample</span>
+              <span class="text-[10px] text-slate-400">GuruAJ Official AI Notes</span>
+            </div>
+            <h4 id="sample-p1-heading" class="font-bold text-slate-900 text-base">1. Life Processes Overview</h4>
+            <p class="text-slate-700 leading-relaxed">
+              Biological processes essential for maintaining life include Nutrition, Respiration, Transportation, and Excretion. Autotrophic nutrition involves photosynthesis: 
+              <span class="font-mono bg-slate-100 p-1 rounded text-slate-900 font-bold">6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</span>.
+            </p>
+            <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-900 text-xs font-medium">
+              💡 <strong>Key Exam Tip:</strong> Master the 3 pathways of glucose breakdown and nephron filtration steps.
             </div>
           </div>
 
-          <div class="flex flex-wrap justify-center gap-3 pt-2">
-            <a href="https://wa.me/917366999087?text=Hi%20GuruAJ,%20I%20want%20to%20buy%20Class%2010%20Biology%20Life%20Processes%20Notes" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
-              <i class="fa-brands fa-whatsapp text-lg"></i> Send Receipt on WhatsApp (7366999087)
-            </a>
-            <!-- Direct download link pointing to uploaded PDF -->
-            <a id="direct-pdf-link" href="life_processes_notes.pdf" download class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-3 rounded-xl shadow transition flex items-center gap-2 text-sm">
-              <i class="fa-solid fa-file-pdf text-red-400"></i> Direct Download PDF
-            </a>
+          <!-- Sample Page 2 -->
+          <div class="bg-white text-slate-900 p-6 rounded-2xl shadow-md border border-slate-200 text-xs sm:text-sm space-y-3 relative">
+            <div class="flex justify-between items-center border-b pb-2 border-slate-200">
+              <span class="font-black text-emerald-700 uppercase tracking-wide">Page 2 • Free Sample</span>
+              <span class="text-[10px] text-slate-400">GuruAJ Official AI Notes</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-base">2. Human Digestive System & Respiration</h4>
+            <p class="text-slate-700 leading-relaxed">
+              Salivary amylase digests starch in buccal cavity; Gastric glands release HCl, Pepsin, Mucus. Small intestine receives Bile & Pancreatic juices (Trypsin, Lipase) for complete absorption via Villi.
+            </p>
+            <div class="h-16 bg-slate-100 rounded-xl border border-dashed border-slate-300 flex items-center justify-center text-slate-500 font-mono text-xs">
+              [ Glucose Breakdown Pathways: Cytoplasm → Pyruvate → Mitochondria / Muscles / Yeast ]
+            </div>
           </div>
+
+          <!-- Page 3+ (BLURRED OVERLAY) -->
+          <div class="relative bg-white text-slate-900 p-6 rounded-2xl shadow-md border border-slate-200 text-xs overflow-hidden">
+            <div class="blurred-content space-y-3">
+              <div class="flex justify-between border-b pb-2">
+                <span class="font-bold text-slate-400">Page 3 • Full High-Res Notes</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-base">3. Detailed Mechanisms & Important Questions</h4>
+              <p>Double circulation in 4-chambered heart, xylem vs phloem transport, nephron filtration mechanisms, and high-yield board practice questions.</p>
+              <div class="h-24 bg-slate-200 rounded-xl"></div>
+            </div>
+
+            <!-- Unlock Badge Overlay -->
+            <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center text-white space-y-3">
+              <div class="w-12 h-12 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center text-xl font-bold shadow-lg">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg">Unlock Full High-Res Notes PDF</h4>
+                <p class="text-slate-300 text-xs">Get all remaining pages + practice Q&As + printable notebook file.</p>
+              </div>
+              <span class="text-xs bg-emerald-950 border border-emerald-500/40 text-emerald-300 px-3 py-1 rounded-full">
+                Available Now / Order via GPay
+              </span>
+            </div>
+          </div>
+
         </div>
 
       </div>
+
+      <!-- Modal Footer with Purchase & Direct Download Actions -->
+      <div class="p-5 border-t border-slate-800 bg-slate-950 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-xs text-slate-400">Price tag:</span>
+          <div class="flex items-center gap-2">
+            <span id="modal-price" class="text-2xl font-black text-emerald-400">₹29</span>
+            <span class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">PDF Format</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <a id="modal-gpay-btn" 
+             href="https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20want%20to%20buy%20the%20notes%20for%20chapter:%20Life%20Processes" 
+             target="_blank" 
+             class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-5 py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
+            <i class="fa-brands fa-google-pay text-xl"></i>
+            <span>Pay via GPay</span>
+          </a>
+          <!-- Direct Link to your PDF file on GitHub -->
+          <a id="modal-pdf-download"
+             href="life_processes_notes.pdf" 
+             download
+             class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-bold px-5 py-3 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2 text-sm">
+            <i class="fa-solid fa-file-pdf text-red-400"></i>
+            <span>Download PDF</span>
+          </a>
+        </div>
+      </div>
+
     </div>
+
   </div>
 
-  <!-- Custom AI Projects Section -->
-  <section id="custom-pdf" class="py-16 max-w-3xl mx-auto px-4">
-    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xl">
-      <div class="text-center mb-6">
-        <span class="bg-purple-100 text-purple-700 font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Custom On-Demand Content</span>
-        <h2 class="text-2xl font-black text-slate-900 mt-2">Order Custom AI Projects & Presentations</h2>
-        <p class="text-slate-600 text-sm mt-1">Need a specialized PowerPoint presentation, cultural project file, or custom study summary? Submit your requirements below!</p>
-      </div>
-
-      <form class="space-y-4" onsubmit="event.preventDefault(); window.open('https://wa.me/917366999087?text=Hi%20GuruAJ,%20I%20want%20to%20order%20a%20custom%20AI%20project.', '_blank');">
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Your Name</label>
-          <input type="text" placeholder="Enter your full name" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm" required>
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-700 mb-1">WhatsApp Number</label>
-          <input type="text" placeholder="7366999087" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm" required>
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Project Type</label>
-          <select class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm">
-            <option>PowerPoint Presentation (PPT)</option>
-            <option>Cultural / School Homework Project File</option>
-            <option>Custom Chapter Study Notes PDF</option>
-            <option>Festive Vector Art / Custom Illustration</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Project Instructions & Topic Details</label>
-          <textarea rows="3" placeholder="Describe the topic, slides required, or subject guidelines..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm" required></textarea>
-        </div>
-
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-950 font-medium">
-          <i class="fa-solid fa-circle-info text-amber-600 mr-1"></i>
-          <strong>AI Transparency:</strong> All custom orders are designed using AI tools and human-verified for quality.
-        </div>
-
-        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
-          <i class="fa-brands fa-whatsapp text-lg"></i> Submit Order via WhatsApp (7366999087)
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- YouTube Direct Link -->
-  <section id="youtube" class="bg-slate-900 text-white py-12 px-4 border-t border-slate-800">
-    <div class="max-w-5xl mx-auto text-center space-y-4">
-      <h2 class="text-2xl font-black">Watch Free Video Tutorials on YouTube</h2>
-      <p class="text-slate-400 text-sm max-w-xl mx-auto">
-        Subscribe to **@guruajofficial** for free visual lectures, chapter breakdowns, and study tips!
+  <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-800 text-center text-xs">
+    <div class="max-w-7xl mx-auto px-4 space-y-3">
+      <p class="font-bold text-slate-300">© 2026 GuruAJ Official (@guruajofficial). All rights reserved.</p>
+      <p class="max-w-xl mx-auto text-slate-500">
+        Empowering students with affordable Class 10 & 12 Science notes, custom topic files, and cultural presentations. 100% AI-assisted content made for academic success.
       </p>
-      <a href="https://youtube.com/@guruajofficial" target="_blank" class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition">
-        <i class="fa-brands fa-youtube text-xl"></i> Visit @guruajofficial
-      </a>
+      <div class="flex justify-center gap-6 pt-2 text-slate-400">
+        <span>GPay UPI: <strong class="text-emerald-400 font-mono">7366999087</strong></span>
+        <span>•</span>
+        <span>WhatsApp: <strong class="text-emerald-400 font-mono">7366999087</strong></span>
+      </div>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-8 text-center text-xs border-t border-slate-800">
-    <p>© 2026 **GuruAJ Official** (@guruajofficial). WhatsApp: 7366999087 | Google Pay: 7366999087@gpay</p>
   </footer>
 
-  <!-- Script for Chapter Switching & PDF Loading -->
+  <!-- Complete Script for Concept Map & Modals -->
   <script>
-    let activeClass = '10';
-    let activeSubject = 'bio';
+    const syllabusData = {
+      10: {
+        title: "Class 10 Science Concept Map",
+        biology: [
+          { name: "Life Processes", price: "₹29", file: "life_processes_notes.pdf", desc: "Nutrition, Respiration, Transportation, Excretion" },
+          { name: "Control & Coordination", price: "₹29", file: "", desc: "Nervous System, Hormones & Reflex Arc" },
+          { name: "How do Organisms Reproduce?", price: "₹29", file: "", desc: "Asexual & Sexual Reproduction" },
+          { name: "Heredity & Evolution", price: "₹29", file: "", desc: "Mendel Laws, Genetics Basics" },
+          { name: "Our Environment", price: "₹19", file: "", desc: "Ecosystem, Food Chains & Waste" }
+        ],
+        physics: [
+          { name: "Light – Reflection & Refraction", price: "₹29", file: "", desc: "Mirrors, Lenses & Ray Diagrams" },
+          { name: "Human Eye & Colorful World", price: "₹29", file: "", desc: "Prisms, Dispersion & Defects" },
+          { name: "Electricity", price: "₹29", file: "", desc: "Ohm's Law, Resistance & Circuits" },
+          { name: "Magnetic Effects of Current", price: "₹29", file: "", desc: "Solenoid, Induction & Motors" }
+        ],
+        chemistry: [
+          { name: "Chemical Reactions & Equations", price: "₹29", file: "", desc: "Types of Reactions & Balancing" },
+          { name: "Acids, Bases & Salts", price: "₹29", file: "", desc: "pH Scale, Indicators & Salts" },
+          { name: "Metals & Non-Metals", price: "₹29", file: "", desc: "Reactivity Series & Metallurgy" },
+          { name: "Carbon & Its Compounds", price: "₹29", file: "", desc: "Covalent Bonds & Functional Groups" }
+        ]
+      },
+      12: {
+        title: "Class 12 Senior Science Concept Map",
+        biology: [
+          { name: "Sexual Reproduction in Flowering Plants", price: "₹39", file: "", desc: "Pollination & Embryo Development" },
+          { name: "Human Reproduction", price: "₹39", file: "", desc: "Gametogenesis & Reproductive Cycle" },
+          { name: "Molecular Basis of Inheritance", price: "₹39", file: "", desc: "DNA, RNA & Protein Synthesis" }
+        ],
+        physics: [
+          { name: "Electric Charges & Fields", price: "₹39", file: "", desc: "Coulomb Law & Gauss Theorem" },
+          { name: "Electrostatic Potential", price: "₹39", file: "", desc: "Capacitance & Potential Energy" },
+          { name: "Current Electricity", price: "₹39", file: "", desc: "Kirchhoff Laws & Wheatstone Bridge" }
+        ],
+        chemistry: [
+          { name: "Solutions", price: "₹39", file: "", desc: "Raoult's Law & Colligative Properties" },
+          { name: "Electrochemistry", price: "₹39", file: "", desc: "Nernst Equation & Conductance" },
+          { name: "Chemical Kinetics", price: "₹39", file: "", desc: "Rate Laws & Activation Energy" }
+        ]
+      }
+    };
+
+    let currentClass = 10;
 
     function selectClass(cls) {
-      activeClass = cls;
-      const btn10 = document.getElementById('btn-c10');
-      const btn12 = document.getElementById('btn-c12');
-      const title = document.getElementById('class-title');
-
-      if (cls === '10') {
-        btn10.className = 'px-8 py-3.5 rounded-2xl font-extrabold text-lg shadow-md transition flex items-center gap-3 bg-emerald-600 text-white ring-4 ring-emerald-600/30';
-        btn12.className = 'px-8 py-3.5 rounded-2xl font-extrabold text-lg shadow-md transition flex items-center gap-3 bg-white text-slate-700 border border-slate-300 hover:border-emerald-500';
-        title.innerText = 'Class 10 Science Streams';
+      currentClass = cls;
+      
+      const btn10 = document.getElementById('btn-class10');
+      const btn12 = document.getElementById('btn-class12');
+      
+      if(cls === 10) {
+        btn10.className = "px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 bg-emerald-500 text-slate-950 shadow-md";
+        btn12.className = "px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 text-slate-400 hover:text-white";
       } else {
-        btn12.className = 'px-8 py-3.5 rounded-2xl font-extrabold text-lg shadow-md transition flex items-center gap-3 bg-emerald-600 text-white ring-4 ring-emerald-600/30';
-        btn10.className = 'px-8 py-3.5 rounded-2xl font-extrabold text-lg shadow-md transition flex items-center gap-3 bg-white text-slate-700 border border-slate-300 hover:border-emerald-500';
-        title.innerText = 'Class 12 Senior Science Streams';
+        btn12.className = "px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 bg-emerald-500 text-slate-950 shadow-md";
+        btn10.className = "px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 text-slate-400 hover:text-white";
       }
-      renderChapters();
+
+      renderConceptMap();
     }
 
-    function toggleSubject(subj) {
-      activeSubject = subj;
-      renderChapters();
+    function renderConceptMap() {
+      const data = syllabusData[currentClass];
+      document.getElementById('mindmap-root-title').innerHTML = `<i class="fa-solid fa-atom text-2xl"></i><span>${data.title}</span>`;
+      
+      document.getElementById('bio-count').innerText = data.biology.length;
+      document.getElementById('phy-count').innerText = data.physics.length;
+      document.getElementById('chem-count').innerText = data.chemistry.length;
+
+      renderBranch('bio-chapters-list', data.biology, 'emerald', 'Biology');
+      renderBranch('phy-chapters-list', data.physics, 'cyan', 'Physics');
+      renderBranch('chem-chapters-list', data.chemistry, 'amber', 'Chemistry');
     }
 
-    function renderChapters() {
-      const treeTitle = document.getElementById('tree-title');
-      const list = document.getElementById('chapter-list');
-
-      if (activeClass === '10' && activeSubject === 'bio') {
-        treeTitle.innerHTML = `<i class="fa-solid fa-sitemap"></i> Class 10 Biology Chapters`;
-        list.innerHTML = `
-          <div class="p-4 rounded-xl bg-slate-900 border border-emerald-500/40 hover:border-emerald-400 transition flex items-center justify-between group">
-            <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">Ch 1</span>
-              <div>
-                <h5 class="font-bold text-white text-sm group-hover:text-emerald-300">Life Processes</h5>
-                <span class="text-xs text-slate-400">Notebook Copy Format PDF • Board Verified</span>
-              </div>
+    function renderBranch(containerId, chapters, color, subject) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = chapters.map((ch, idx) => `
+        <div onclick="openModal('${subject}', '${ch.name}', '${ch.price}', '${ch.file}')" 
+             class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-${color}-500/80 hover:bg-slate-800/80 transition cursor-pointer flex items-center justify-between group mindmap-node">
+          <div class="flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-md bg-${color}-500/20 text-${color}-400 text-[11px] font-mono font-bold flex items-center justify-center">
+              0${idx+1}
+            </span>
+            <div>
+              <h4 class="text-xs font-bold text-white group-hover:text-${color}-300 transition">${ch.name}</h4>
+              <p class="text-[10px] text-slate-400">${ch.desc}</p>
             </div>
-            <button onclick="openPdfModal('Class 10 Biology - Life Processes', 49, 'life_processes_notes.pdf')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition shadow">
-              Preview & Buy
-            </button>
           </div>
-          <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 opacity-75">
-            <div class="flex items-center gap-3">
-              <span class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 text-xs font-bold flex items-center justify-center">Ch 2</span>
-              <div>
-                <h5 class="font-bold text-slate-300 text-sm">Control and Coordination</h5>
-                <span class="text-xs text-slate-500">Updating Soon...</span>
-              </div>
-            </div>
-          </div>`;
+          <span class="text-[11px] font-bold text-${color}-400 bg-${color}-950/80 border border-${color}-800/60 px-2 py-0.5 rounded-md">
+            ${ch.price}
+          </span>
+        </div>
+      `).join('');
+    }
+
+    function openModal(subject, chapterName, price, file) {
+      document.getElementById('modal-class-badge').innerText = `Class ${currentClass} ${subject}`;
+      document.getElementById('modal-chapter-title').innerText = `${chapterName} - Complete Notes`;
+      document.getElementById('modal-price').innerText = price;
+      
+      const gpayBtn = document.getElementById('modal-gpay-btn');
+      gpayBtn.href = `https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20want%20to%20buy%20the%20notes%20for%20chapter:%20${encodeURIComponent(chapterName)}`;
+      
+      const downloadBtn = document.getElementById('modal-pdf-download');
+      if (file) {
+        downloadBtn.href = file;
+        downloadBtn.style.display = "flex";
       } else {
-        treeTitle.innerHTML = `<i class="fa-solid fa-sitemap"></i> Class ${activeClass} ${activeSubject.toUpperCase()} Chapters`;
-        list.innerHTML = `<p class="text-slate-400 text-xs italic">Chapter notes for Class ${activeClass} ${activeSubject.toUpperCase()} are currently being prepared. Check back soon!</p>`;
+        downloadBtn.href = "javascript:alert('This chapter notes file will be uploaded soon!')";
       }
+
+      document.getElementById('notes-preview-modal').classList.remove('hidden');
     }
 
-    function openPdfModal(title, price, filename) {
-      document.getElementById('modal-chapter-title').innerText = title;
-      document.getElementById('modal-price').innerText = '₹' + price;
-      document.getElementById('direct-pdf-link').href = filename;
-      document.getElementById('pdf-modal').classList.remove('hidden');
+    function closeModal() {
+      document.getElementById('notes-preview-modal').classList.add('hidden');
     }
 
-    function closePdfModal() {
-      document.getElementById('pdf-modal').classList.add('hidden');
-    }
+    // Initialize map on page load
+    window.onload = function() {
+      selectClass(10);
+    };
   </script>
 
 </body>
