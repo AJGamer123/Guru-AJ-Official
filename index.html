@@ -468,7 +468,7 @@
     </section>
   </main>
 
-  <!-- Modal Component with Embedded PDF Viewer & WhatsApp Payment Link -->
+  <!-- Modal Component with Direct Embedded PDF Viewer & WhatsApp Payment Link -->
   <div id="notes-preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
     
     <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-300">
@@ -500,13 +500,12 @@
           <span class="font-bold bg-emerald-900/80 px-2.5 py-1 rounded-md text-emerald-200">Sample Viewer</span>
         </div>
 
-        <!-- Embedded Actual PDF File -->
+        <!-- Embedded Actual PDF File using iframe -->
         <div class="w-full h-[450px] rounded-2xl border border-slate-700 overflow-hidden bg-slate-900">
-          <object id="pdf-object-viewer" data="life_processes_notes.pdf#page=1" type="application/pdf" class="w-full h-full">
-            <iframe id="pdf-iframe-viewer" src="life_processes_notes.pdf#page=1" class="w-full h-full border-none">
-              <p class="text-white text-xs p-4">Your browser does not support inline PDF previews. <a href="life_processes_notes.pdf" target="_blank" class="text-emerald-400 underline">Click here to open sample PDF directly.</a></p>
-            </iframe>
-          </object>
+          <iframe id="pdf-iframe-viewer" 
+                  src="https://docs.google.com/viewer?url=https://ajgamer123.github.io/Guru-AJ-Official/life_processes_notes.pdf&embedded=true" 
+                  class="w-full h-full border-none">
+          </iframe>
         </div>
 
         <!-- Locked Pages Overlay Banner -->
@@ -667,16 +666,12 @@
       const gpayBtn = document.getElementById('modal-gpay-btn');
       gpayBtn.href = `https://wa.me/917366999087?text=Hi%20GuruAJ!%20I%20have%20sent%20payment%20via%20GPay.%20Please%20send%20me%20the%20complete%20PDF%20for%20${encodeURIComponent(chapterName)}`;
       
-      const pdfObj = document.getElementById('pdf-object-viewer');
       const pdfIframe = document.getElementById('pdf-iframe-viewer');
       
-      if (file) {
-        pdfObj.data = `${file}#page=1`;
-        pdfIframe.src = `${file}#page=1`;
-      } else {
-        pdfObj.data = "life_processes_notes.pdf#page=1";
-        pdfIframe.src = "life_processes_notes.pdf#page=1";
-      }
+      const targetFile = file || "life_processes_notes.pdf";
+      const fileUrl = `https://ajgamer123.github.io/Guru-AJ-Official/${targetFile}`;
+      
+      pdfIframe.src = `https://docs.google.com/viewer?url=${fileUrl}&embedded=true`;
 
       document.getElementById('notes-preview-modal').classList.remove('hidden');
     }
@@ -685,7 +680,6 @@
       document.getElementById('notes-preview-modal').classList.add('hidden');
     }
 
-    // Initialize map on page load
     window.onload = function() {
       selectClass(10);
     };
